@@ -1,4 +1,4 @@
-# Weather - The Convenient Weather App
+# Weather iOS
 
 Welcome to Weather, a convenient weather app that provides real-time weather information for your city and beyond! With the use of iPhone's location services and the OpenWeather API, Weather is the go-to app for all your weather needs. Whether you're planning your day or just curious about the weather, Weather has got you covered.
 
