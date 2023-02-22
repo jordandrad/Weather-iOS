@@ -14,7 +14,7 @@ protocol WeatherManagerDelegate{
 
 struct WeatherManager{
   
-    let weatherURL = "https://api.openweathermap.org/data/2.5/weather?&appid=a7d5976260e5eecc1cccc73535526f69&units=metric"
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?&appid=a7d5976260e5eecc1cccc73535526f69&\(GlobalData.shared.units)"
     var delegate: WeatherManagerDelegate?
 
     func fetchWeather(cityName: String){
@@ -25,6 +25,7 @@ struct WeatherManager{
         let urlString = "\(weatherURL)&lat=\(lat)&lon=\(lon)"
         performRequest(with: urlString)
     }
+      
     func performRequest(with urlString: String){
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
@@ -49,10 +50,23 @@ struct WeatherManager{
             let id = decodedData.weather[0].id
             let temp = decodedData.main.temp
             let name = decodedData.name
+            let temp_min = decodedData.main.temp_min
+            let temp_max = decodedData.main.temp_max
+            let feels_like = decodedData.main.feels_like
+            let humidity = decodedData.main.humidity
+            let speed = decodedData.wind.speed
+            let pressure = decodedData.main.pressure
             
-            let weather = WeatherModel(conditionId: id, cityName: name, temperature: temp)
+            
+            let weather = WeatherModel(conditionId: id, cityName: name, temperature: temp, temp_min: temp_min, temp_max: temp_max,feels_like: feels_like, humidity: humidity, speed: speed, pressure: pressure )
             print(weather.cityName)
             print(weather.temperatureString)
+            print(weather.temp_min)
+            print(weather.temp_max)
+            print(weather.humidity)
+            print(weather.speed)
+            print(weather.pressure)
+            print(weather.feels_like)
             return weather
         
            
@@ -64,4 +78,3 @@ struct WeatherManager{
     
 
 }
-

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070071F3299AC23E009A94CC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070071F2299AC23E009A94CC /* SettingsViewController.swift */; };
+		070071F5299ACB76009A94CC /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070071F4299ACB76009A94CC /* SettingsManager.swift */; };
+		070071F7299ACBEC009A94CC /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070071F6299ACBEC009A94CC /* GlobalData.swift */; };
+		070071F9299ACD32009A94CC /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070071F8299ACD32009A94CC /* Keys.swift */; };
+		073F3DA1299D6AD10004E1B4 /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F3DA0299D6AD10004E1B4 /* EventsManager.swift */; };
+		073F3DA3299D6E1B0004E1B4 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F3DA2299D6E1B0004E1B4 /* EventsViewController.swift */; };
 		07A8B494299423330020EE7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8B493299423330020EE7B /* AppDelegate.swift */; };
 		07A8B496299423330020EE7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8B495299423330020EE7B /* SceneDelegate.swift */; };
 		07A8B498299423330020EE7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8B497299423330020EE7B /* ViewController.swift */; };
@@ -20,6 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		070071F2299AC23E009A94CC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		070071F4299ACB76009A94CC /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		070071F6299ACBEC009A94CC /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
+		070071F8299ACD32009A94CC /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		073F3DA0299D6AD10004E1B4 /* EventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsManager.swift; sourceTree = "<group>"; };
+		073F3DA2299D6E1B0004E1B4 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		07A8B490299423330020EE7B /* Weather-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A8B493299423330020EE7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07A8B495299423330020EE7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +94,10 @@
 				07A8B4AC299424910020EE7B /* WeatherManager.swift */,
 				07A8B4AE299424B00020EE7B /* WeatherData.swift */,
 				07A8B4B0299424C50020EE7B /* WeatherModel.swift */,
+				070071F4299ACB76009A94CC /* SettingsManager.swift */,
+				070071F6299ACBEC009A94CC /* GlobalData.swift */,
+				070071F8299ACD32009A94CC /* Keys.swift */,
+				073F3DA0299D6AD10004E1B4 /* EventsManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				07A8B4AA299424650020EE7B /* WeatherViewController.swift */,
+				070071F2299AC23E009A94CC /* SettingsViewController.swift */,
+				073F3DA2299D6E1B0004E1B4 /* EventsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,9 +196,15 @@
 				07A8B4AB299424650020EE7B /* WeatherViewController.swift in Sources */,
 				07A8B4AD299424910020EE7B /* WeatherManager.swift in Sources */,
 				07A8B4B1299424C50020EE7B /* WeatherModel.swift in Sources */,
+				070071F9299ACD32009A94CC /* Keys.swift in Sources */,
 				07A8B494299423330020EE7B /* AppDelegate.swift in Sources */,
+				073F3DA1299D6AD10004E1B4 /* EventsManager.swift in Sources */,
+				073F3DA3299D6E1B0004E1B4 /* EventsViewController.swift in Sources */,
 				07A8B4AF299424B00020EE7B /* WeatherData.swift in Sources */,
+				070071F7299ACBEC009A94CC /* GlobalData.swift in Sources */,
 				07A8B496299423330020EE7B /* SceneDelegate.swift in Sources */,
+				070071F3299AC23E009A94CC /* SettingsViewController.swift in Sources */,
+				070071F5299ACB76009A94CC /* SettingsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +354,8 @@
 				DEVELOPMENT_TEAM = 7VGNYZF67U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Weather-App/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Weather;
+				INFOPLIST_KEY_CFBundleDisplayName = "Opus Weather";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to get the current weather for where you are.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -341,8 +366,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prifina.weather-app";
+				MARKETING_VERSION = 0.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prifina.weather-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -360,7 +385,8 @@
 				DEVELOPMENT_TEAM = 7VGNYZF67U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Weather-App/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Weather;
+				INFOPLIST_KEY_CFBundleDisplayName = "Opus Weather";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to get the current weather for where you are.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -371,8 +397,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prifina.weather-app";
+				MARKETING_VERSION = 0.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prifina.weather-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

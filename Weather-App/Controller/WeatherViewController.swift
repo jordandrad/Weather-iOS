@@ -5,11 +5,12 @@
 //  Created by Jordan Andrade on 2/8/23.
 //
 
-import Foundation
+
 
 
 import UIKit
 import CoreLocation
+import EventKit
 
 class WeatherViewController: UIViewController {
     
@@ -17,6 +18,12 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var minTempLabel: UILabel!
+    @IBOutlet weak var maxTempLabel: UILabel!
+    @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var feels_likeLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
     
     
     
@@ -24,7 +31,7 @@ class WeatherViewController: UIViewController {
     let locationManager = CLLocationManager()
     var longitude: String?
     var latitude: String?
- 
+    let eventsManager = EventsManager()
     
     
     override func viewDidLoad() {
@@ -36,17 +43,37 @@ class WeatherViewController: UIViewController {
         searchTextField.delegate = self
         
         // Do any additional setup after loading the view.
+        eventsManager.requestAccessToCalendar()
+        eventsManager.getNextFiveEventLocations()
     }
     
-
+    
     @IBAction func GPSButtonClicked(_ sender: UIButton) {
         if let safeLat = latitude, let safeLon = longitude{
             WeatherManagerr.fetchWeatherByCoordinates(lat: safeLat , lon: safeLon)
         }
-}
     }
     
-
+    @IBAction func SettingsButtonClicked(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToSettings", sender: self)
+    }
+    
+    @IBAction func EventsButtonClicked(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToEvents", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToSettings"{
+            if let SettingsVC = segue.destination as? SettingsViewController{
+                SettingsVC.delegate = self
+            }
+        }
+        
+        
+    }
+    
+}
 
 // MARK: - UITextFieldDelegate
 
@@ -84,9 +111,18 @@ extension WeatherViewController: UITextFieldDelegate{
 extension WeatherViewController: WeatherManagerDelegate{
     func didUpdateWeather(_ weatherManager: WeatherManager,weather: WeatherModel) {
         DispatchQueue.main.async {
-            self.temperatureLabel.text = weather.temperatureString
+            self.temperatureLabel.text = "\(weather.temperatureString)°"
             self.cityLabel.text = weather.cityName
             self.conditionImageView.image = UIImage(systemName: weather.conditionName)
+            self.minTempLabel.text = "\(weather.temp_min)°"
+            self.maxTempLabel.text = "\(weather.temp_max)°"
+            self.humidityLabel.text = "\(weather.humidity)%"
+            self.windSpeedLabel.text = "\(Int(weather.speed)) \(GlobalData.shared.speedLabel)"
+            self.feels_likeLabel.text = "\(weather.feels_like)°"
+            self.pressureLabel.text = "\(weather.pressure) hPa"
+            
+          
+            
         }
     }
     func didFailWithError(error: Error) {
@@ -116,6 +152,16 @@ extension WeatherViewController: CLLocationManagerDelegate{
     }
 }
 
+// MARK: - UpdateWeatherDelegate
+
+extension WeatherViewController: UpdateWeather{
+   @IBAction func UpdateWeatherData() {
+       WeatherManagerr.weatherURL = "https://api.openweathermap.org/data/2.5/weather?&appid=a7d5976260e5eecc1cccc73535526f69&\(GlobalData.shared.units)"
+        if let safeLat = latitude, let safeLon = longitude{
+            WeatherManagerr.fetchWeatherByCoordinates(lat: safeLat , lon: safeLon)
+        }
+    }
+}
 
     
 
