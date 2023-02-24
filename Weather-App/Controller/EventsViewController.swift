@@ -93,23 +93,18 @@ extension EventsViewController: WeatherManagerDelegate {
                  case 0:
                      self.EventTempLabel1.text = "\(temperature)°"
                      self.EventImage1.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  case 1:
                      self.EventTempLabel2.text = "\(temperature)°"
                      self.EventImage2.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  case 2:
                      self.EventTempLabel3.text = "\(temperature)°"
                      self.EventImage3.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  case 3:
                      self.EventTempLabel4.text = "\(temperature)°"
                      self.EventImage4.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  case 4:
                      self.EventTempLabel5.text = "\(temperature)°"
                      self.EventImage5.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  default:
                      break
                  }
