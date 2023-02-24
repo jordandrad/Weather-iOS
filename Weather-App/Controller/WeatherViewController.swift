@@ -11,6 +11,7 @@
 import UIKit
 import CoreLocation
 import EventKit
+import Network
 
 class WeatherViewController: UIViewController {
     
@@ -32,10 +33,12 @@ class WeatherViewController: UIViewController {
     var longitude: String?
     var latitude: String?
     let eventsManager = EventsManager()
+    let pathMonitor = NWPathMonitor()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.checkNetworkConnection()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -68,11 +71,24 @@ class WeatherViewController: UIViewController {
             if let SettingsVC = segue.destination as? SettingsViewController{
                 SettingsVC.delegate = self
             }
-        }
-        
-        
-    }
+        }}
     
+    func checkNetworkConnection(){
+        pathMonitor.start(queue: DispatchQueue.global())
+        pathMonitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("Connected")
+            } else {
+                print("Not connected")
+                DispatchQueue.main.async {
+                           let alert = UIAlertController(title: "No Internet Connection", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                           let action = UIAlertAction(title: "OK", style: .default)
+                           alert.addAction(action)
+                           self.present(alert, animated: true, completion: nil)
+                       }
+            }
+        }
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -164,4 +180,5 @@ extension WeatherViewController: UpdateWeather{
 }
 
     
+
 
