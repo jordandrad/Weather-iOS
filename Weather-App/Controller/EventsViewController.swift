@@ -45,13 +45,23 @@ class EventsViewController: UIViewController {
             eventTitleLabel.text = data.title
             eventCityLabel.text = data.location
         }
-     
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[0].location.components(separatedBy: "\n")[0])
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[1].location.components(separatedBy: "\n")[0])
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[2].location.components(separatedBy: "\n")[0])
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[3].location.components(separatedBy: "\n")[0])
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[4].location.components(separatedBy: "\n")[0])
-    }
+        let eventCount = eventsData.count
+           if eventCount > 0 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[0].location.components(separatedBy: "\n")[0])
+           }
+           if eventCount > 1 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[1].location.components(separatedBy: "\n")[0])
+           }
+           if eventCount > 2 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[2].location.components(separatedBy: "\n")[0])
+           }
+           if eventCount > 3 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[3].location.components(separatedBy: "\n")[0])
+           }
+           if eventCount > 4 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[4].location.components(separatedBy: "\n")[0])
+           }
+       }
     @IBAction func BackClicked(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
@@ -93,23 +103,18 @@ extension EventsViewController: WeatherManagerDelegate {
                  case 0:
                      self.EventTempLabel1.text = "\(temperature)°"
                      self.EventImage1.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  case 1:
                      self.EventTempLabel2.text = "\(temperature)°"
                      self.EventImage2.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  case 2:
                      self.EventTempLabel3.text = "\(temperature)°"
                      self.EventImage3.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  case 3:
                      self.EventTempLabel4.text = "\(temperature)°"
                      self.EventImage4.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  case 4:
                      self.EventTempLabel5.text = "\(temperature)°"
                      self.EventImage5.image = UIImage(systemName: weather.conditionName)
-                     print("Condition ID for \(cityName): \(weather.conditionId)")
                  default:
                      break
                  }
