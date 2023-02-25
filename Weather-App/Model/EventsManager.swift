@@ -55,11 +55,17 @@ class EventsManager{
                 let predicate = eventStore.predicateForEvents(withStart: now, end: endDate, calendars: nil)
                 var eventsData = [(title: String, location: String)]() // Initialize empty array of event data
                 let events = eventStore.events(matching: predicate).filter { $0.endDate > now }.sorted { $0.startDate < $1.startDate }
-                let numberOfEvents = events.count > 5 ? 5 : events.count // Limit to 5 events
-                for i in 0..<numberOfEvents {
+                var uniqueLocations = Set<String>()
+                for i in 0..<events.count {
                     let event = events[i]
-                    let eventData: (title: String, location: String) = (title: event.title, location: event.location ?? "")
-                    eventsData.append(eventData) // Add event data to the array
+                    if uniqueLocations.count >= 5 {
+                        break
+                    }
+                    if let location = event.location, !uniqueLocations.contains(location) {
+                        let eventData: (title: String, location: String) = (title: event.title, location: location)
+                        eventsData.append(eventData) // Add event data to the array
+                        uniqueLocations.insert(location)
+                    }
                 }
                 GlobalData.shared.eventsData = eventsData // Update GlobalData with event data
             }

@@ -62,7 +62,15 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func EventsButtonClicked(_ sender: UIButton) {
-        performSegue(withIdentifier: "GoToEvents", sender: self)
+        if GlobalData.shared.eventsData.isEmpty {
+               let alert = UIAlertController(title: "No Events", message: "You have no events created yet. Please create an event to use this feature.", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+               present(alert, animated: true, completion: nil)
+        } else{
+            performSegue(withIdentifier: "GoToEvents", sender: self)
+        }
+        
+       
     }
     
     

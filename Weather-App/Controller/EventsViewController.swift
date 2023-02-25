@@ -45,13 +45,23 @@ class EventsViewController: UIViewController {
             eventTitleLabel.text = data.title
             eventCityLabel.text = data.location
         }
-     
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[0].location.components(separatedBy: "\n")[0])
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[1].location.components(separatedBy: "\n")[0])
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[2].location.components(separatedBy: "\n")[0])
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[3].location.components(separatedBy: "\n")[0])
-        weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[4].location.components(separatedBy: "\n")[0])
-    }
+        let eventCount = eventsData.count
+           if eventCount > 0 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[0].location.components(separatedBy: "\n")[0])
+           }
+           if eventCount > 1 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[1].location.components(separatedBy: "\n")[0])
+           }
+           if eventCount > 2 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[2].location.components(separatedBy: "\n")[0])
+           }
+           if eventCount > 3 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[3].location.components(separatedBy: "\n")[0])
+           }
+           if eventCount > 4 {
+               weatherManager.fetchWeather(cityName: GlobalData.shared.eventsData[4].location.components(separatedBy: "\n")[0])
+           }
+       }
     @IBAction func BackClicked(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
